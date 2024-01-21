@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import TwoPartiesMessageContainer from '@/components/TwoPartiesMessageContainer.vue'
-import Message from '@/components/Message.vue'
-import MicrophoneButton from '@/components/MicrophoneButton.vue'
+import TwoPartiesMessageContainer from '../components/TwoPartiesMessageContainer.vue'
+import ChatMessage from '../components/Message.vue'
+import MicrophoneButton from '../components/MicrophoneButton.vue'
 import axios from 'axios'
 import RecordRTC from 'recordrtc'
 import Skeleton from 'primevue/skeleton'
 import ProgressSpinner from 'primevue/progressspinner'
 
 import { computed, ref, watch } from 'vue'
-import type { Sender } from '../Types'
+import type { Sender, Message } from '../Types'
 import {speakText, translate} from '../helpers'
 
 const messages = ref<Message[]>([
-    {
-        message: 'I want to go to the cinema',
-        translation: 'Ich möchte ins Kino gehen',
-        sender: 'left'
-    }
+    // {
+    //     message: 'I want to go to the cinema',
+    //     translation: 'Ich möchte ins Kino gehen',
+    //     sender: 'left'
+    // }
 ])
 
 watch(
@@ -80,7 +80,7 @@ const startRecording = async (sender: 'left' | 'right') => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
     recorder = new RecordRTC(stream, {
       type: 'audio',
-      mimeType: 'audio/mp3',
+      mimeType: 'audio/wav',
       recorderType: RecordRTC.StereoAudioRecorder // or any other recorder type
     })
     recorder.startRecording()
@@ -95,7 +95,9 @@ const stopRecording = async () => {
     console.log('No recorder available')
   }
 
+  // @ts-ignore
   recorder.stopRecording(() => {
+      // @ts-ignore
     audioBlob.value = recorder.getBlob()
     recorder?.destroy()
 
@@ -126,7 +128,7 @@ const sendAudio = () => {
     .then((response) => {
       if (response.data) {
         addMessage(response.data.text, activeRecorder.value)
-        activeRecorder.value = ''
+        activeRecorder.value = null
       }
     })
     .catch((error) => {
@@ -143,7 +145,7 @@ function toggleRecording(sender: 'left' | 'right') {
   }
 }
 
-function addMessage(message: string, sender: 'left' | 'right') {
+function addMessage(message: string, sender: Sender) {
   messages.value.push({
     message,
     sender
@@ -166,7 +168,7 @@ function addMessage(message: string, sender: 'left' | 'right') {
     <template #messages>
       <!-- Hier werden die Konversationsblöcke eingefügt -->
       <!-- Beispiel für eine Nachricht -->
-      <Message v-for="messageObject in messages" :message="messageObject" @speak="speak"></Message>
+      <ChatMessage v-for="messageObject in messages" :message="messageObject" @speak="speak"></ChatMessage>
 
       <div
         v-if="loadingSender"
