@@ -1,25 +1,12 @@
 # Translate Conversation
 
-[Hier ist der Link, um CORS-Beschränkungen im Browser zu umgehen](https://alfilatov.com/posts/run-chrome-without-cors/). Dieses Repository dient als Demo für eine App, die von einem ÖPNV-Unternehmen in Bussen eingesetzt werden soll. Ziel ist es, Busfahrern, die keine Deutschkenntnisse haben, trotzdem die Möglichekeit zu geben, einen Dialog mit den Fahrgästen zu führen.
+Dies ist der Sourcecode eines Projekts, das als außercurriculare Leistung während meines Bachelors in Wirtschaftsinformatik entstanden ist. 
 
-## Empfohlene IDE-Konfiguration
+In dem Projekt ging es darum, für ein Unternehmen aus dem Bereich des öffentlichen Nahverkehrs eine Applikation zu entwickeln, die es Busfahrern mit geringen oder keinen Deutschkenntnissen ermöglichen soll, mit den Fahrgästen in Dialog zu treten. Es handelt sich um einen rudimentären Prototypen. Er soll zeigen, wie ein Gespräch zwischen dem Busfahrer und einem Fahrgast in einer beliebigen Sprache aussehen kann. Dazu verwendet die Anwendung die OpenAI [TTS](https://platform.openai.com/docs/guides/text-to-speech) & [STT](https://platform.openai.com/docs/guides/speech-to-text) API. Die [DeepL API](https://www.deepl.com/de/pro-api) wird für die Übersetzung der Dialoge verwendet. 
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (und deaktiviere Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Typenunterstützung für `.vue`-Importe in TS
+Um das Projekt auszuführen, kann die Datei dist/index.html im Browser geöffnet werden. [Der Browser sollte keine CORS-Einschränkungen haben](https://alfilatov.com/posts/run-chrome-without-cors/), da die Anfragen an die Drittanbieter-APIs im Browser selbst erfolgen.  
 
-Standardmäßig kann TypeScript keine Typinformationen für `.vue`-Importe verarbeiten. Daher verwenden wir `vue-tsc` anstelle des `tsc` CLI für die Typüberprüfung. In Editoren benötigen wir das [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin), um den TypeScript Language Service über die `.vue`-Typen zu informieren.
-
-Falls das eigenständige TypeScript-Plugin für Sie nicht schnell genug ist, hat Volar auch einen [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) implementiert, der leistungsfähiger ist. Sie können ihn wie folgt aktivieren:
-
-1. Deaktivieren Sie die integrierte TypeScript-Erweiterung
-   1) Führen Sie `Extensions: Show Built-in Extensions` im Befehlspalette von VSCode aus.
-   2) Finden Sie `TypeScript and JavaScript Language Features`, klicken Sie mit der rechten Maustaste und wählen Sie `Deaktivieren (Workspace)`.
-2. Aktualisieren Sie das VSCode-Fenster, indem Sie `Developer: Reload Window` aus der Befehlspalette ausführen.
-
-## Konfiguration anpassen
-
-Siehe [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Projektsetup
 
